@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Admin{% endblock %} - System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body class="admin-body">
+    <!-- < class="admin-container"> -->
+    <aside class="admin-sidebar">
+        <div class="sidebar-brand">
+            <h2>ADMIN</h2>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="{{ url_for('admin.dashboard') }}" class="sidebar-link">
+                Dashboard
+            </a>
+            <a href="{{ url_for('admin.writings_list') }}" class="sidebar-link">
+                Writings
+            </a>
+            <a href="{{ url_for('admin.projects_list') }}" class="sidebar-link">
+                Projects
+            </a>
+            <a href="{{ url_for('admin.products_list') }}" class="sidebar-link">
+                Products
+            </a>
+        </nav>
+        
+        <div class="sidebar-footer">
+            <a href="{{ url_for('main.home') }}" class="sidebar-link">← View Site</a>
+            <a href="{{ url_for('admin.logout') }}" class="sidebar-link">Logout</a>
+        </div>
+    </aside>
+    
+    <main class="admin-main">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">
+                    {{ message }}
+                </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

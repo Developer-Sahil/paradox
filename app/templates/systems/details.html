@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}{{ tool.title }}{% endblock %}
+
+{% block content %}
+<section class="content">
+    <h1>{{ tool.title }}</h1>
+
+    <article>
+        <p>{{ tool.description }}</p>
+        
+        {% if tool.url %}
+        <a href="{{ tool.url }}" class="btn" target="_blank" rel="noopener">Open Tool</a>
+        {% endif %}
+    </article>
+
+    <nav class="post-nav">
+        <a href="{{ url_for('systems.index') }}">← Back to tools</a>
+    </nav>
+</section>
+{% endblock %}

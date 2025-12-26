@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <h1>System</h1>
+    <p>Building, writing, shipping.</p>
+</section>
+
+<section class="grid">
+    <article class="card">
+        <h2><a href="{{ url_for('writings.index') }}">Writings</a></h2>
+        <p>Technical explorations and notes.</p>
+    </article>
+
+    <article class="card">
+        <h2><a href="{{ url_for('projects.index') }}">Projects</a></h2>
+        <p>Live demos and experiments.</p>
+    </article>
+
+    <article class="card">
+        <h2><a href="{{ url_for('products.index') }}">Products</a></h2>
+        <p>Digital tools for sale.</p>
+    </article>
+
+    <article class="card">
+        <h2><a href="{{ url_for('systems.index') }}">Tools</a></h2>
+        <p>Public utilities.</p>
+    </article>
+
+    <article class="card">
+        <h2><a href="{{ url_for('vault.index') }}">Vault</a></h2>
+        <p>Knowledge base.</p>
+    </article>
+
+    <article class="card">
+        <h2><a href="{{ url_for('arena.index') }}">Arena</a></h2>
+        <p>Commentary and discourse.</p>
+    </article>
+
+    <article class="card">
+        <h2><a href="{{ url_for('metrics.index') }}">Metrics</a></h2>
+        <p>Public scoreboard.</p>
+    </article>
+
+    <article class="card">
+        <h2><a href="{{ url_for('work.index') }}">Work</a></h2>
+        <p>Collaboration terms.</p>
+    </article>
+</section>
+{% endblock %}

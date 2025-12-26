@@ -1,0 +1,44 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Writings{% endblock %}
+
+{% block content %}
+<div class="admin-header">
+    <h1>Writings</h1>
+    <a href="{{ url_for('admin.writings_new') }}" class="btn btn-primary">+ New Post</a>
+</div>
+
+<div class="admin-table">
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Series</th>
+                <th>Tags</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for writing in writings %}
+            <tr>
+                <td>{{ writing.title }}</td>
+                <td>{{ writing.date }}</td>
+                <td>{{ writing.series or '-' }}</td>
+                <td>{{ writing.tags|join(', ') if writing.tags else '-' }}</td>
+                <td class="actions">
+                    <a href="{{ url_for('admin.writings_edit', id=writing.id) }}" class="btn-small">Edit</a>
+                    <form method="POST" action="{{ url_for('admin.writings_delete', id=writing.id) }}" style="display: inline;">
+                        <button type="submit" class="btn-small btn-danger" onclick="return confirm('Delete this post?')">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="5" class="empty-state">No writings yet. Create your first post!</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

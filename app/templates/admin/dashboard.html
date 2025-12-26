@@ -1,0 +1,38 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="admin-header">
+    <h1>Dashboard</h1>
+</div>
+
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-value">{{ writings_count }}</div>
+        <div class="stat-label">Writings</div>
+        <a href="{{ url_for('admin.writings_list') }}" class="stat-link">Manage →</a>
+    </div>
+    
+    <div class="stat-card">
+        <div class="stat-value">{{ projects_count }}</div>
+        <div class="stat-label">Projects</div>
+        <a href="{{ url_for('admin.projects_list') }}" class="stat-link">Manage →</a>
+    </div>
+    
+    <div class="stat-card">
+        <div class="stat-value">{{ products_count }}</div>
+        <div class="stat-label">Products</div>
+        <a href="{{ url_for('admin.products_list') }}" class="stat-link">Manage →</a>
+    </div>
+</div>
+
+<div class="quick-actions">
+    <h2>Quick Actions</h2>
+    <div class="action-buttons">
+        <a href="{{ url_for('admin.writings_new') }}" class="btn btn-primary">New Writing</a>
+        <a href="{{ url_for('admin.projects_new') }}" class="btn btn-primary">New Project</a>
+        <a href="{{ url_for('admin.products_new') }}" class="btn btn-primary">New Product</a>
+    </div>
+</div>
+{% endblock %}

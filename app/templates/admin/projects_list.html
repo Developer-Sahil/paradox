@@ -1,0 +1,42 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Projects{% endblock %}
+
+{% block content %}
+<div class="admin-header">
+    <h1>Projects</h1>
+    <a href="{{ url_for('admin.projects_new') }}" class="btn btn-primary">+ New Project</a>
+</div>
+
+<div class="admin-table">
+    <table>
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Status</th>
+                <th>Tech Stack</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for project in projects %}
+            <tr>
+                <td>{{ project.title }}</td>
+                <td><span class="badge badge-{{ project.status }}">{{ project.status }}</span></td>
+                <td>{{ project.tech_stack|join(', ') if project.tech_stack else '-' }}</td>
+                <td class="actions">
+                    <a href="{{ url_for('admin.projects_edit', id=project.id) }}" class="btn-small">Edit</a>
+                    <form method="POST" action="{{ url_for('admin.projects_delete', id=project.id) }}" style="display: inline;">
+                        <button type="submit" class="btn-small btn-danger" onclick="return confirm('Delete this project?')">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <td colspan="4" class="empty-state">No projects yet. Create your first project!</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

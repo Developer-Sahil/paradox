@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}System{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="{{ url_for('main.home') }}" class="nav-brand">SYSTEM</a>
+            <ul class="nav-links">
+                <li><a href="{{ url_for('writings.index') }}">writings</a></li>
+                <li><a href="{{ url_for('projects.index') }}">projects</a></li>
+                <li><a href="{{ url_for('products.index') }}">products</a></li>
+                <li><a href="{{ url_for('systems.index') }}">tools</a></li>
+                <li><a href="{{ url_for('vault.index') }}">vault</a></li>
+                <li><a href="{{ url_for('arena.index') }}">arena</a></li>
+                <li><a href="{{ url_for('metrics.index') }}">metrics</a></li>
+                <li><a href="{{ url_for('work.index') }}">work</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <p>&copy; {{ now.year if now else '2024' }}</p>
+        </div>
+    </footer>
+
+    {% block scripts %}{% endblock %}
+</body>
+</html>

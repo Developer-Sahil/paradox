@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Vault{% endblock %}
+
+{% block content %}
+<section class="content">
+    <h1>Vault</h1>
+
+    {% if categories %}
+    <nav class="filter-nav">
+        <a href="{{ url_for('vault.index') }}" {% if not current_category %}class="active"{% endif %}>all</a>
+        {% for category in categories %}
+        <a href="{{ url_for('vault.index', category=category) }}" {% if current_category == category %}class="active"{% endif %}>{{ category }}</a>
+        {% endfor %}
+    </nav>
+    {% endif %}
+
+    {% if items %}
+        <div class="list">
+            {% for item in items %}
+            <article class="list-item">
+                <h2><a href="{{ url_for('vault.detail', item_id=item.id) }}">{{ item.title }}</a></h2>
+                {% if item.category %}
+                <span class="tag">{{ item.category }}</span>
+                {% endif %}
+                {% if item.tags %}
+                    {% for tag in item.tags %}
+                    <span class="tag">{{ tag }}</span>
+                    {% endfor %}
+                {% endif %}
+            </article>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No items in vault.</p>
+    {% endif %}
+</section>
+{% endblock %}

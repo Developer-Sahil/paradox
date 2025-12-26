@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Tools{% endblock %}
+
+{% block content %}
+<section class="content">
+    <h1>Tools</h1>
+
+    {% if tools %}
+        <div class="grid">
+            {% for tool in tools %}
+            <article class="card">
+                <h2><a href="{{ url_for('systems.detail', tool_id=tool.id) }}">{{ tool.title }}</a></h2>
+                <p>{{ tool.description }}</p>
+                {% if tool.category %}
+                <span class="tag">{{ tool.category }}</span>
+                {% endif %}
+            </article>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No tools available.</p>
+    {% endif %}
+</section>
+{% endblock %}
