@@ -3,23 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}System{% endblock %}</title>
+    <title>{% block title %}Paradox System{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
     {% block head %}{% endblock %}
 </head>
 <body>
     <nav>
         <div class="nav-container">
-            <a href="{{ url_for('main.home') }}" class="nav-brand">SYSTEM</a>
+            <a href="{{ url_for('main.home') }}" class="nav-brand">PARADOX SYSTEM</a>
             <ul class="nav-links">
-                <li><a href="{{ url_for('writings.index') }}">writings</a></li>
-                <li><a href="{{ url_for('projects.index') }}">projects</a></li>
-                <li><a href="{{ url_for('products.index') }}">products</a></li>
-                <li><a href="{{ url_for('systems.index') }}">tools</a></li>
-                <li><a href="{{ url_for('vault.index') }}">vault</a></li>
-                <li><a href="{{ url_for('arena.index') }}">arena</a></li>
-                <li><a href="{{ url_for('metrics.index') }}">metrics</a></li>
-                <li><a href="{{ url_for('work.index') }}">work</a></li>
+                <li><a href="{{ url_for('main.home') }}">Home</a></li>
+                <li><a href="{{ url_for('writings.index') }}">Writings</a></li>
+                <li><a href="{{ url_for('projects.index') }}">Projects</a></li>
+                <li><a href="{{ url_for('products.index') }}">Products</a></li>
+                <li><a href="{{ url_for('systems.index') }}">Tools</a></li>
+                <li><a href="{{ url_for('vault.index') }}">Vault</a></li>
+                <li><a href="{{ url_for('arena.index') }}">Arena</a></li>
+                <li><a href="{{ url_for('metrics.index') }}">Metrics</a></li>
+                <li><a href="{{ url_for('work.index') }}">Work</a></li>
             </ul>
         </div>
     </nav>
@@ -30,7 +31,7 @@
 
     <footer>
         <div class="footer-container">
-            <p>&copy; {{ now.year if now else '2024' }}</p>
+            <p>&copy; {{ now.year if now else '2026' }}</p>
         </div>
     </footer>
 

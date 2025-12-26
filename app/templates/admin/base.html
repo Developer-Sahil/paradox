@@ -8,34 +8,25 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
 </head>
 <body class="admin-body">
-    <!-- < class="admin-container"> -->
-    <aside class="admin-sidebar">
-        <div class="sidebar-brand">
-            <h2>ADMIN</h2>
+    <nav class="admin-nav">
+        <div class="admin-nav-container">
+            <a href="{{ url_for('admin.dashboard') }}" class="admin-brand">ADMIN</a>
+            
+            <ul class="admin-nav-links">
+                <li><a href="{{ url_for('admin.dashboard') }}">Dashboard</a></li>
+                <li><a href="{{ url_for('admin.writings_list') }}">Writings</a></li>
+                <li><a href="{{ url_for('admin.projects_list') }}">Projects</a></li>
+                <li><a href="{{ url_for('admin.products_list') }}">Products</a></li>
+            </ul>
+            
+            <div class="admin-nav-actions">
+                <a href="{{ url_for('main.home') }}" class="admin-nav-link">← View Site</a>
+                <a href="{{ url_for('admin.logout') }}" class="admin-nav-link">Logout</a>
+            </div>
         </div>
-        
-        <nav class="sidebar-nav">
-            <a href="{{ url_for('admin.dashboard') }}" class="sidebar-link">
-                Dashboard
-            </a>
-            <a href="{{ url_for('admin.writings_list') }}" class="sidebar-link">
-                Writings
-            </a>
-            <a href="{{ url_for('admin.projects_list') }}" class="sidebar-link">
-                Projects
-            </a>
-            <a href="{{ url_for('admin.products_list') }}" class="sidebar-link">
-                Products
-            </a>
-        </nav>
-        
-        <div class="sidebar-footer">
-            <a href="{{ url_for('main.home') }}" class="sidebar-link">← View Site</a>
-            <a href="{{ url_for('admin.logout') }}" class="sidebar-link">Logout</a>
-        </div>
-    </aside>
+    </nav>
     
-    <main class="admin-main">
+    <main class="admin-content">
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 {% for category, message in messages %}
