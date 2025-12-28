@@ -113,13 +113,11 @@ main {
 /* Hero Section */
 .hero {
     position: relative;
-    min-height: 80vh;
+    min-height: 60vh;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: flex-start;
-    margin-bottom: 6rem;
-    padding: 4rem 0;
+    align-items: center;
+    margin-bottom: 4rem;
+    padding: 3rem 0;
     overflow: hidden;
 }
 
@@ -130,23 +128,50 @@ main {
     right: -10%;
     width: 600px;
     height: 600px;
-    background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, transparent 70%);
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.08) 0%, transparent 70%);
     border-radius: 50%;
     filter: blur(80px);
     z-index: -1;
 }
 
-.hero::after {
-    content: '';
-    position: absolute;
-    bottom: -30%;
-    left: -10%;
-    width: 500px;
-    height: 500px;
-    background: radial-gradient(circle, rgba(167, 139, 250, 0.1) 0%, transparent 70%);
+.hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+    width: 100%;
+}
+
+.hero-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.hero-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-image img {
+    max-width: 450px;
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
     border-radius: 50%;
-    filter: blur(80px);
-    z-index: -1;
+    border: 8px solid rgba(139, 92, 246, 0.2);
+    box-shadow: 0 20px 60px rgba(139, 92, 246, 0.3);
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
 }
 
 .hero-badge {
@@ -162,7 +187,7 @@ main {
 }
 
 .hero h1 {
-    font-size: clamp(3rem, 8vw, 6rem);
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
     font-weight: 800;
     line-height: 1.1;
     margin-bottom: 1.5rem;
@@ -174,7 +199,7 @@ main {
 }
 
 .hero-subtitle {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     color: var(--fg-secondary);
     max-width: 650px;
     margin-bottom: 2.5rem;
@@ -683,16 +708,30 @@ footer {
     }
     
     .hero {
-        min-height: 50vh;
+        min-height: auto;
         padding: 2rem 0;
     }
     
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    .hero-image {
+        order: -1;
+    }
+    
+    .hero-image img {
+        max-width: 300px;
+        height: 300px;
+    }
+    
     .hero h1 {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
     
     .hero-subtitle {
-        font-size: 1.125rem;
+        font-size: 1rem;
     }
     
     .grid {

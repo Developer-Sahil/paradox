@@ -5,12 +5,19 @@
 {% block content %}
 <!-- Hero Section -->
 <section class="hero">
-    <div class="hero-badge">Available for Projects</div>
-    <h1>Building Digital<br>Experiences</h1>
-    <p class="hero-subtitle">Full-stack engineer crafting scalable systems, elegant interfaces, and meaningful products.</p>
-    <div class="hero-cta">
-        <a href="{{ url_for('work.index') }}" class="btn btn-primary">Work With Me</a>
-        <a href="{{ url_for('projects.index') }}" class="btn btn-secondary">View Projects</a>
+    <div class="hero-content">
+        <div class="hero-text">
+            <div class="hero-badge">Available for Projects</div>
+            <h1>Building Digital<br>Experiences</h1>
+            <p class="hero-subtitle">Full-stack engineer crafting scalable systems, elegant interfaces, and meaningful products.</p>
+            <div class="hero-cta">
+                <a href="{{ url_for('work.index') }}" class="btn btn-primary">Work With Me</a>
+                <a href="{{ url_for('projects.index') }}" class="btn btn-secondary">View Projects</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="{{ url_for('static', filename='assets/hero_profile.jpeg') }}" alt="Profile Picture">
+        </div>
     </div>
 </section>
 
@@ -23,48 +30,58 @@
     
     <div class="featured-grid">
         <article class="featured-card featured-large">
-            <div class="featured-image" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+            <div class="featured-image" style="background-image: url('{{ url_for('static', filename='assets/codesage_thumbnail.png') }}'); background-size: cover; background-position: center;">
                 <div class="featured-badge">Web App</div>
             </div>
             <div class="featured-content">
-                <h3>Project Alpha</h3>
-                <p>Full-stack SaaS platform built with Flask, React, and PostgreSQL. Real-time analytics dashboard with 10k+ active users.</p>
+                <h3>CodeSage</h3>
+                <p>An intelligent codebase analysis and refactoring system that helps improve code quality, maintainability, and generates insights about your projects using Google's Gemini AI.</p>
                 <div class="featured-tags">
                     <span class="tag">Flask</span>
-                    <span class="tag">React</span>
-                    <span class="tag">PostgreSQL</span>
+                    <span class="tag">Cloud Run</span>
+                    <span class="tag">Gemini API</span>
                 </div>
                 <div class="featured-links">
-                    <a href="#" class="link-arrow">Live Demo →</a>
-                    <a href="#" class="link-arrow">GitHub →</a>
+                    <a href="https://codesage-724681386895.us-central1.run.app/" class="link-arrow">Live Demo →</a>
+                    <a href="https://github.com/Developer-Sahil/codesage" class="link-arrow">GitHub →</a>
                 </div>
             </div>
         </article>
 
         <article class="featured-card">
-            <div class="featured-image" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">
-                <div class="featured-badge">API</div>
+            <div class="featured-image" style="background-image: url('{{ url_for('static', filename='assets/ecovision_thumbnail.png') }}'); background-size: cover; background-position: center;">
+                <div class="featured-badge">Web App</div>
             </div>
             <div class="featured-content">
-                <h3>Project Beta</h3>
-                <p>RESTful API serving 1M+ requests daily with Redis caching and JWT authentication.</p>
+                <h3>EcoVision</h3>
+                <p>EcoVision is an AI-powered web application that uses deep learning and computer vision to classify waste items as biodegradable or non-biodegradable. The application provides users with eco-impact scores, decomposition time estimates, and practical recycling tips to promote environmental awareness.</p>
                 <div class="featured-tags">
                     <span class="tag">Python</span>
-                    <span class="tag">Redis</span>
+                    <span class="tag">OpenCV</span>
+                    <span class="tag">Tensor Flow</span>
+                </div>
+                <div class="featured-links">
+                    <a href="https://ecovision-zpke.onrender.com/" class="link-arrow">Live Demo →</a>
+                    <a href="https://github.com/Developer-Sahil/EcoVision" class="link-arrow">GitHub →</a>
                 </div>
             </div>
         </article>
 
         <article class="featured-card">
-            <div class="featured-image" style="background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%);">
-                <div class="featured-badge">Tool</div>
+            <div class="featured-image" style="background-image: url('{{ url_for('static', filename='assets/ds_mascot.png') }}'); background-size: cover; background-position: center;">
+                <div class="featured-badge">Web App</div>
             </div>
             <div class="featured-content">
-                <h3>Project Gamma</h3>
-                <p>Open-source CLI tool for automated deployment workflows with 5k+ downloads.</p>
+                <h3>Learning Hub</h3>
+                <p>A clean, structured resource hub for mastering the essentials of Data Science technologies — from Python to SQL.</p>
                 <div class="featured-tags">
-                    <span class="tag">Node.js</span>
-                    <span class="tag">CLI</span>
+                    <span class="tag">CSS</span>
+                    <span class="tag">HTML</span>
+                    <span class="tag">Java Script</span>
+                </div>
+                <div class="featured-links">
+                    <a href="https://developer-sahil.github.io/Learning-Hub/" class="link-arrow">Live Demo →</a>
+                    <a href="https://github.com/Developer-Sahil/Learning-Hub" class="link-arrow">GitHub →</a>
                 </div>
             </div>
         </article>
@@ -80,37 +97,37 @@
     <div class="expertise-grid">
         <div class="expertise-card">
             <div class="expertise-icon">⚡</div>
-            <h3>Backend Development</h3>
-            <p>Building robust APIs and scalable server architectures with Python, Flask, Django, and Node.js.</p>
+            <h3>Data Science and Analysis</h3>
+            <p>I am focused on extracting actionable insights through structured data processing and analysis.</p>
             <ul class="expertise-list">
-                <li>RESTful & GraphQL APIs</li>
-                <li>Database design & optimization</li>
-                <li>Microservices architecture</li>
-                <li>Cloud infrastructure (AWS, GCP)</li>
+                <li>Data Cleaning and Preprocessing Pipelines</li>
+                <li>Statistical analysis & visualization</li>
+                <li>End-to-end data workflows</li>
+                <li>Tools: Python, Pandas, NumPy, SQL</li>
             </ul>
         </div>
 
         <div class="expertise-card">
-            <div class="expertise-icon">🎨</div>
-            <h3>Frontend Development</h3>
-            <p>Creating responsive, accessible interfaces with modern frameworks and design systems.</p>
+            <div class="expertise-icon">🤖</div>
+            <h3>AI / Machine Learning</h3>
+            <p>Experienced in developing and integrating machine learning models into applications.</p>
             <ul class="expertise-list">
-                <li>React, Vue.js, TypeScript</li>
-                <li>UI/UX implementation</li>
-                <li>Performance optimization</li>
-                <li>Progressive Web Apps</li>
+                <li>Model prototyping & validation</li>
+                <li>Supervised & unsupervised learning</li>
+                <li>Applied NLP and recommendation systems</li>
+                <li>Tools: Scikit-learn, TensorFlow, PyTorch</li>
             </ul>
         </div>
 
         <div class="expertise-card">
             <div class="expertise-icon">🔧</div>
-            <h3>DevOps & Tools</h3>
-            <p>Streamlining deployment pipelines and maintaining production-ready infrastructure.</p>
+            <h3>Full-Stack Development</h3>
+            <p>Skilled in building complete, data-driven web applications.</p>
             <ul class="expertise-list">
-                <li>CI/CD automation</li>
-                <li>Docker & Kubernetes</li>
-                <li>Monitoring & logging</li>
-                <li>Infrastructure as Code</li>
+                <li>REST API development</li>
+                <li>Backend logic & database integration</li>
+                <li>Frontend–backend system design</li>
+                <li>Tools: HTML, CSS, JS, Flask, SQL/NoSQL</li>
             </ul>
         </div>
     </div>
