@@ -141,35 +141,28 @@
     </div>
     
     <div class="writings-grid">
-        <article class="writing-card">
-            <time>2024-01-15</time>
-            <h3><a href="{{ url_for('writings.index') }}">Building Scalable Flask Applications</a></h3>
-            <p>Lessons learned from architecting a Flask app that handles millions of requests per day.</p>
-            <div class="writing-tags">
-                <span class="tag">Flask</span>
-                <span class="tag">Architecture</span>
-            </div>
-        </article>
-
-        <article class="writing-card">
-            <time>2024-01-10</time>
-            <h3><a href="{{ url_for('writings.index') }}">Database Optimization Strategies</a></h3>
-            <p>Practical techniques for improving PostgreSQL query performance and reducing latency.</p>
-            <div class="writing-tags">
-                <span class="tag">Database</span>
-                <span class="tag">Performance</span>
-            </div>
-        </article>
-
-        <article class="writing-card">
-            <time>2024-01-05</time>
-            <h3><a href="{{ url_for('writings.index') }}">Modern API Design Patterns</a></h3>
-            <p>Best practices for designing RESTful APIs that scale and remain maintainable.</p>
-            <div class="writing-tags">
-                <span class="tag">API</span>
-                <span class="tag">Design</span>
-            </div>
-        </article>
+        {% if latest_posts %}
+            {% for post in latest_posts %}
+            <article class="writing-card">
+                <time>{{ post.date }}</time>
+                <h3><a href="{{ url_for('writings.detail', slug=post.slug) }}">{{ post.title }}</a></h3>
+                <p>{{ post.content[:150] }}{% if post.content|length > 150 %}...{% endif %}</p>
+                {% if post.tags %}
+                <div class="writing-tags">
+                    {% for tag in post.tags %}
+                    <span class="tag">{{ tag }}</span>
+                    {% endfor %}
+                </div>
+                {% endif %}
+            </article>
+            {% endfor %}
+        {% else %}
+            <article class="writing-card">
+                <time>Coming Soon</time>
+                <h3>No writings yet</h3>
+                <p>Check back soon for new content!</p>
+            </article>
+        {% endif %}
     </div>
 </section>
 
@@ -177,15 +170,15 @@
 <section class="stats-section">
     <div class="stats-container">
         <div class="stat-box">
-            <div class="stat-number">50+</div>
+            <div class="stat-number">10+</div>
             <div class="stat-label">Projects Shipped</div>
         </div>
         <div class="stat-box">
-            <div class="stat-number">5+</div>
+            <div class="stat-number">1+</div>
             <div class="stat-label">Years Experience</div>
         </div>
         <div class="stat-box">
-            <div class="stat-number">100k+</div>
+            <div class="stat-number">10k+</div>
             <div class="stat-label">Lines of Code</div>
         </div>
         <div class="stat-box">
