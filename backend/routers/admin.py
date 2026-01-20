@@ -5,7 +5,7 @@ from pydantic import BaseModel
 from typing import Dict, Any, List, Optional
 from datetime import datetime
 
-from backend.main import db
+from backend.dependencies import get_db
 from backend.models.admin import AdminLoginRequest, AdminPostCreate, AdminPostUpdate, AdminProjectCreate, AdminProjectUpdate, AdminProductCreate, AdminProductUpdate
 from backend.models.post import Post
 from backend.models.product import Product
@@ -41,10 +41,7 @@ async def admin_logout():
     return {"success": True, "message": "Logged out successfully"}
 
 @router.get("/admin/dashboard")
-async def admin_dashboard(current_user: Dict[str, Any] = Depends(get_current_user)):
-    if db is None:
-        raise HTTPException(status_code=500, detail="Database not initialized")
-    
+async def admin_dashboard(current_user: Dict[str, Any] = Depends(get_current_user), db: firestore.Client = Depends(get_db)):
     writings_count = len(list(db.collection('writings').stream()))
     projects_count = len(list(db.collection('projects').stream()))
     products_count = len(list(db.collection('products').stream()))

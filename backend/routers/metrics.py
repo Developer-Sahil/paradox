@@ -1,22 +1,19 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 from typing import List, Optional, Dict, Union
+from firebase_admin import firestore
 
-from backend.main import db
+from backend.dependencies import get_db
 from backend.models.metric import Metric
 
 router = APIRouter()
 
 @router.get("/metrics", response_model=List[Metric])
-async def get_all_metrics():
-    if db is None:
-        raise HTTPException(status_code=500, detail="Database not initialized")
+async def get_all_metrics(db: firestore.Client = Depends(get_db)):
     metrics = Metric.get_all(db)
     return metrics
 
 @router.get("/metrics/grouped")
-async def get_grouped_metrics() -> Dict[str, List[Metric]]:
-    if db is None:
-        raise HTTPException(status_code=500, detail="Database not initialized")
+async def get_grouped_metrics(db: firestore.Client = Depends(get_db)) -> Dict[str, List[Metric]]:
     metrics = Metric.get_all(db)
     
     grouped = {}

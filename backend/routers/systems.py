@@ -1,7 +1,7 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, Depends, HTTPException
 from typing import List
-
 from firebase_admin import firestore
+
 from backend.dependencies import get_db
 from backend.models.tool import Tool
 
