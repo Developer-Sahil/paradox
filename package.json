@@ -1,0 +1,22 @@
+{
+  "name": "paradox",
+  "version": "1.0.0",
+  "description": "Personal Portfolio & System",
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "uvicorn backend.main:app --host 0.0.0.0 --port 8000 --reload",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:flask": "python run.py",
+    "build:frontend": "cd frontend && npm run build",
+    "start:frontend": "cd frontend && npm start",
+    "install:frontend": "cd frontend && npm install",
+    "lint:frontend": "cd frontend && npm run lint",
+    "install:all": "pip install -r requirements.txt && npm run install:frontend"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "dependencies": {
+    "firebase": "^12.8.0"
+  }
+}
