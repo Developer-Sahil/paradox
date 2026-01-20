@@ -1,5 +1,9 @@
-Flask
-firebase-admin
-python-dotenv
-markdown
-Werkzeug
+Flask==3.0.0
+Werkzeug==3.0.1
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+pydantic==2.5.0
+firebase-admin==6.2.0
+python-dotenv==1.0.0
+markdown==3.5.1
+python-multipart==0.0.6

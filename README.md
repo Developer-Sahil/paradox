@@ -23,16 +23,25 @@ A modern, full-stack personal website built with Flask and Firebase. Features a 
 
 ## Tech Stack
 
-**Backend**
+**Primary Backend (FastAPI)**
+- FastAPI 0.104.1
+- Python 3.8+
+- Firebase Admin SDK
+- Firestore Database
+- Pydantic models
+- Automatic OpenAPI documentation
+
+**Legacy Backend (Flask)**
 - Flask 3.0
 - Python 3.8+
 - Firebase Admin SDK
 - Firestore Database
 
 **Frontend**
-- Jinja2 Templates
-- CSS3 (Purple gradient theme)
-- Vanilla JavaScript
+- **Next.js 16** - Modern React framework (frontend/)
+- **Jinja2 Templates** - Server-side rendering (Flask)
+- **Tailwind CSS 4** - Utility-first CSS framework
+- **TypeScript** - Type-safe JavaScript
 - Firebase Web SDK
 
 **Infrastructure**
@@ -44,15 +53,38 @@ A modern, full-stack personal website built with Flask and Firebase. Features a 
 ## Project Structure
 
 ```
-personal-website/
-├── app/
-│   ├── __init__.py           # App factory
-│   ├── models/               # Data models
+paradox/
+├── backend/                  # FastAPI backend (Primary)
+│   ├── main.py              # FastAPI app entry point
+│   ├── dependencies.py      # Dependency injection
+│   ├── models/              # Pydantic data models
+│   │   ├── post.py
+│   │   ├── product.py
+│   │   ├── project.py
+│   │   ├── metric.py
+│   │   ├── vault.py
+│   │   ├── arena.py
+│   │   ├── tool.py
+│   │   └── admin.py
+│   └── routers/             # API route handlers
+│       ├── main.py
+│       ├── writings.py
+│       ├── products.py
+│       ├── projects.py
+│       ├── systems.py
+│       ├── vault.py
+│       ├── arena.py
+│       ├── metrics.py
+│       ├── work.py
+│       └── admin.py
+├── app/                     # Flask app (Legacy)
+│   ├── __init__.py          # Flask app factory
+│   ├── models/              # Data models
 │   │   ├── post.py
 │   │   ├── product.py
 │   │   ├── project.py
 │   │   └── metric.py
-│   ├── routes/               # Blueprints
+│   ├── routes/              # Flask blueprints
 │   │   ├── main.py
 │   │   ├── writings.py
 │   │   ├── products.py
@@ -63,21 +95,34 @@ personal-website/
 │   │   ├── metrics.py
 │   │   ├── work.py
 │   │   └── admin.py
-│   ├── templates/            # Jinja templates
+│   ├── templates/           # Jinja2 templates
 │   │   ├── base.html
 │   │   ├── home.html
 │   │   ├── admin/
 │   │   ├── writings/
 │   │   ├── projects/
 │   │   └── ...
-│   └── static/
-│       └── css/
-│           ├── style.css     # Main styles
-│           └── admin.css     # Admin styles
-├── config.py                 # Configuration
-├── run.py                    # Application entry
-├── requirements.txt          # Dependencies
-└── .env                      # Environment variables
+│   └── static/              # Static assets
+│       ├── css/
+│       │   ├── style.css    # Main styles
+│       │   └── admin.css    # Admin styles
+│       └── assets/          # Images and media
+├── frontend/                # Next.js frontend
+│   ├── src/
+│   │   ├── app/             # App router pages
+│   │   ├── components/      # React components
+│   │   └── lib/             # Utilities
+│   ├── public/              # Static assets
+│   ├── package.json
+│   ├── tailwind.config.ts
+│   └── next.config.js
+├── firebase_utils.py        # Shared Firebase utilities
+├── config.py                # Flask configuration
+├── run.py                   # Flask app entry point
+├── requirements.txt         # Python dependencies
+├── ARCHITECTURE.md          # Architecture documentation
+├── .env                     # Environment variables
+└── .gitignore
 ```
 
 ## Installation
@@ -148,13 +193,35 @@ mkdir -p app/static/css app/static/js app/static/assets
 
 ## Running Locally
 
+### Option 1: FastAPI Backend (Recommended)
+```bash
+# Install dependencies
+pip install -r requirements.txt
+
+# Run FastAPI server
+uvicorn backend.main:app --host 0.0.0.0 --port 8000 --reload
+```
+
+Visit:
+- API: `http://localhost:8000`
+- API Documentation: `http://localhost:8000/docs`
+- Admin panel: `http://localhost:8000/admin/login`
+
+### Option 2: Flask App (Legacy)
 ```bash
 python run.py
 ```
 
 Visit `http://localhost:5000`
 
-Admin panel: `http://localhost:5000/admin/login`
+### Option 3: Next.js Frontend (Standalone)
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Visit `http://localhost:3000`
 
 ## Firestore Collections
 
