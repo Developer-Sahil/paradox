@@ -3,6 +3,10 @@ from firebase_admin import credentials, firestore
 import os
 import json
 import logging
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 logger = logging.getLogger(__name__)
 
@@ -18,11 +22,23 @@ def initialize_firebase():
         logger.info("Firebase already initialized")
         return firebase_admin.get_app()
 
-    # Method 1: File path from environment variable
+    # Debug: Print what we're trying to use
     cred_path = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
-    if cred_path and os.path.exists(cred_path):
-        logger.info(f"Initializing Firebase with credentials file: {cred_path}")
-        cred = credentials.Certificate(cred_path)
+    logger.info(f"Looking for credentials at: {cred_path}")
+    
+    # Method 1: File path from environment variable
+    if cred_path:
+        # Expand environment variables and resolve path
+        cred_path = os.path.expandvars(cred_path)
+        cred_path = os.path.expanduser(cred_path)
+        
+        if os.path.exists(cred_path):
+            logger.info(f"Initializing Firebase with credentials file: {cred_path}")
+            cred = credentials.Certificate(cred_path)
+        else:
+            error_msg = f"Credentials file not found at: {cred_path}\nCurrent directory: {os.getcwd()}"
+            logger.error(error_msg)
+            raise FileNotFoundError(error_msg)
     else:
         # Method 2: JSON string from environment variable
         cred_json = os.getenv('FIREBASE_CREDENTIALS')
@@ -37,6 +53,8 @@ def initialize_firebase():
         else:
             # Method 3: Application Default Credentials
             logger.info("Initializing Firebase with Application Default Credentials")
+            logger.warning("No GOOGLE_APPLICATION_CREDENTIALS or FIREBASE_CREDENTIALS found in environment")
+            logger.warning("Attempting to use Application Default Credentials (this may fail)")
             cred = credentials.ApplicationDefault()
 
     # Get database URL
@@ -45,12 +63,15 @@ def initialize_firebase():
         logger.warning("FIREBASE_DATABASE_URL not set, using default Firestore instance")
 
     # Initialize the app
-    app = firebase_admin.initialize_app(cred, {
-        'databaseURL': database_url
-    } if database_url else {})
-
-    logger.info("Firebase initialized successfully")
-    return app
+    try:
+        app = firebase_admin.initialize_app(cred, {
+            'databaseURL': database_url
+        } if database_url else {})
+        logger.info("Firebase initialized successfully")
+        return app
+    except Exception as e:
+        logger.error(f"Failed to initialize Firebase: {e}")
+        raise
 
 def get_firestore_client():
     """Get Firestore client, initializing Firebase if necessary."""
